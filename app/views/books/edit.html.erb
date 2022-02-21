@@ -1,0 +1,24 @@
+<div class="edit">
+<h1>Editing Book</h1>
+
+<% if @list.errors.any? %>
+<%= @list.errors.count %>error prohibited this book from being saved
+<ul>
+    <% @list.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model:@list,url: list_update_path(@list.id),method: :patch,local:true do |f| %>
+
+<p>Title</p>
+<%= f.text_field:title %>
+
+<p>Body</p>
+<%= f.text_area:body %>
+
+<%= f.submit'Update Book' %>
+<% end %>
+<%= link_to'Show',list_path %>|<%= link_to'Back',home_path %>
+</div>

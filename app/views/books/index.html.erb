@@ -1,0 +1,45 @@
+<div class="index">
+<h1>Books</h1>
+<div class="green"><%= flash[:notice] %></div>
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Body</th>
+  </tr>
+  </thead>
+  <tbody>
+<% @lists.each do |list| %>
+  <tr>
+    <td><%= list.title %></td>
+    <td><%= list.body %></td>
+    <td><%= link_to 'Show',list_path(list.id) %></td>
+    <td><%= link_to'Edit',list_edit_path(list.id) %></td>
+    <td><%= link_to'Destroy',list_destroy_path(list.id),method: :delete,"data-confirm"=>"Are you sure?" %></td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+<% if @list.errors.any? %>
+<%= @list.errors.count %>error prohibited this book from being saved:
+<ul>
+    <% @list.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<h1>New Book</h1>
+<%= form_with model:@list, url:'/books',method: :post, local:true do |f| %>
+
+<p>Title</p>
+<%= f.text_field :title %>
+
+<p>Body</p>
+<%= f.text_area :body %>
+
+<%= f.submit'Create Book' %>
+<% end %>
+</div>

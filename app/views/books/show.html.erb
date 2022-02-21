@@ -1,0 +1,8 @@
+<div class="green"><%= flash[:notice] %></div>
+<p>Title</p><%= @list.title %>
+
+
+<p>body</p><%= @list.body %>
+
+
+<%= link_to'Edit',list_edit_path(@list.id) %>|<%= link_to'Back',home_path %>
