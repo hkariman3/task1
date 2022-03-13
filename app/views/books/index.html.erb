@@ -13,9 +13,9 @@
   <tr>
     <td><%= list.title %></td>
     <td><%= list.body %></td>
-    <td><%= link_to 'Show',list_path(list.id) %></td>
-    <td><%= link_to'Edit',list_edit_path(list.id) %></td>
-    <td><%= link_to'Destroy',list_destroy_path(list.id),method: :delete,"data-confirm"=>"Are you sure?" %></td>
+    <td><%= link_to 'Show',book_path(list.id) %></td>
+    <td><%= link_to'Edit',edit_book_path(list.id) %></td>
+    <td><%= link_to'Destroy',book_path(list.id),method: :delete,"data-confirm"=>"Are you sure?" %></td>
   </tr>
 <% end %>
   </tbody>
@@ -32,7 +32,7 @@
 
 
 <h1>New Book</h1>
-<%= form_with model:@list, url:'/books',method: :post, local:true do |f| %>
+<%= form_with model:@list, url:books_path ,method: :post, local:true do |f| %>
 
 <p>Title</p>
 <%= f.text_field :title %>

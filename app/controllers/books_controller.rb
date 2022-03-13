@@ -1,32 +1,32 @@
 class BooksController < ApplicationController
   def index
-    @list=List.new
-    @lists=List.all
+    @list=Book.new
+    @lists=Book.all
 
   end
 
   def create
-    @list=List.new(list_params)
+    @list=Book.new(list_params)
     if @list.save
-    redirect_to list_path(@list.id)
+    redirect_to book_path(@list.id)
    flash[:notice] = "Book was successfully created."
     else
-    @lists=List.all
+    @lists=Book.all
     render :index
     end
   end
   def show
-    @list=List.find(params[:id])
+    @list=Book.find(params[:id])
   end
 
   def edit
-    @list=List.find(params[:id])
+    @list=Book.find(params[:id])
   end
 
   def update
-    @list=List.find(params[:id])
+    @list=Book.find(params[:id])
     if @list.update(list_params)
-    redirect_to list_path(@list.id)
+    redirect_to book_path(@list.id)
     flash[:notice] = "Book was successfully updated."
     else
     render :edit
@@ -34,13 +34,13 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    list = List.find(params[:id])
+    list = Book.find(params[:id])
     list.destroy
-    redirect_to home_path
+    redirect_to books_path
     flash[:notice] = "Book was successfully destroyed."
   end
   private
   def list_params
-    params.require(:list).permit(:title,:body)
+    params.require(:book).permit(:title,:body)
   end
 end
